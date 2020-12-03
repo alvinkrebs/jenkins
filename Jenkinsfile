@@ -25,8 +25,8 @@ pipeline {
                 script {
                     def result = ""
                     showHackFiles = {
-                        i.eachDir(showHackFiles)
-                        i.eachFileMatch(~/.*.hack/) {
+                        it.eachDir(showHackFiles)
+                        it.eachFileMatch(~/.*.hack/) {
                             f -> result += "${file.absolutePath}\n"
                         }
                     }
