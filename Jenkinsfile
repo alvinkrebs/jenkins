@@ -27,14 +27,13 @@ pipeline {
                     @NonCPS
                     def result
                     def here = ${env.WORKSPACE}
-                    echo "searching for hack files in ${here}"
                     showHackFiles = {
                         it.eachDir(showHackFiles)
                         it.eachFileMatch(~/.*.hack/) {
                             f -> result += "${file.absolutePath}\n"
                         }
                     }
-                    showHackFiles(new File(${here}))
+                    showHackFiles(new File(here))
                     println result
                 }
             }
