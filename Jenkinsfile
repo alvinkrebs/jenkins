@@ -20,5 +20,18 @@ pipeline {
                 )
             }
         }
+        stage('Stage 3') {
+            steps {
+                def result
+                showHackFiles = {
+                    i.eachDir(showHackFiles);
+                    i.eachFileMatch(~/.*.hack/) {
+                        f -> result += "${file.absolutePath}\n"
+                    }
+                }
+                showHackFiles(new File("."))
+                println result;
+            }
+        }
     }
 }
