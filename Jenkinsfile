@@ -26,7 +26,7 @@ pipeline {
                     @NonCPS
                     def result
                     def here = new File(".").getAbsolutePath()
-                    echo searching for hack files in ${here}
+                    echo "searching for hack files in ${here}"
                     showHackFiles = {
                         it.eachDir(showHackFiles)
                         it.eachFileMatch(~/.*.hack/) {
