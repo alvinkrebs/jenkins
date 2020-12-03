@@ -25,7 +25,7 @@ pipeline {
                 script {
                     @NonCPS
                     def result
-                    def here = new File("/var/jenkins_home/workspace/MyFirstPipeline").getAbsolutePath()
+                    def here = workspace.getCurrent()
                     echo "searching for hack files in ${here}"
                     showHackFiles = {
                         it.eachDir(showHackFiles)
@@ -33,7 +33,7 @@ pipeline {
                             f -> result += "${file.absolutePath}\n"
                         }
                     }
-                    showHackFiles(new File("."))
+                    showHackFiles(new File(${here}))
                     println result
                 }
             }
