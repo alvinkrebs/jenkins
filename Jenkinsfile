@@ -26,7 +26,7 @@ pipeline {
                 script {
                     @NonCPS
                     def result
-                    def here = ${env.WORKSPACE}
+                    def here = "/var/jenkins_home/workspace/MyFirstPipeline"
                     showHackFiles = {
                         it.eachDir(showHackFiles)
                         it.eachFileMatch(~/.*.hack/) {
