@@ -23,7 +23,7 @@ pipeline {
         stage('Stage 3') {
             steps {
                 script {
-                    def result = ""
+                    def result
                     showHackFiles = {
                         it.eachDir(showHackFiles)
                         it.eachFileMatch(~/.*.hack/) {
