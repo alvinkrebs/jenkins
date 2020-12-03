@@ -4,6 +4,7 @@ pipeline {
         stage('Stage 1') {
             steps {
                 echo 'Hello world!' 
+                sh "printenv"
             }
         }
         stage('Stage 2') {
@@ -26,7 +27,6 @@ pipeline {
                     @NonCPS
                     def result
                     def here = "."
-                    sh printenv
                     echo "searching for hack files in ${here}"
                     showHackFiles = {
                         it.eachDir(showHackFiles)
