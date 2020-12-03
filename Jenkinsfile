@@ -23,6 +23,7 @@ pipeline {
         stage('Stage 3') {
             steps {
                 script {
+                    @NonCPS
                     def result
                     showHackFiles = {
                         it.eachDir(showHackFiles)
