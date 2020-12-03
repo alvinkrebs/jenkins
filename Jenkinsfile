@@ -8,16 +8,16 @@ pipeline {
         }
         stage('Stage 2') {
             steps {
-                checkout(
-                    [
-                        $class: 'GitSCM',
-                        branches: [[name: '*/master']],
-                        doGenerateSubmoduleConfigurations: false,
-                        extensions: [],
-                        submoduleCfg: [],
-                        userRemoteConfigs: [[credentialsId: 'JenkinsTest', url: 'https://github.com/alvinkrebs/hhvm-fun.git']]
-                    ]
-                )
+                    checkout(
+                        [
+                            $class: 'GitSCM',
+                            branches: [[name: '*/master']],
+                            doGenerateSubmoduleConfigurations: false,
+                            extensions: [],
+                            submoduleCfg: [],
+                            userRemoteConfigs: [[credentialsId: 'JenkinsTest', url: 'https://github.com/alvinkrebs/hhvm-fun.git']]
+                        ]
+                    )
             }
         }
         stage('Stage 3') {
@@ -25,7 +25,7 @@ pipeline {
                 script {
                     @NonCPS
                     def result
-                    def here = workspace.getCurrent()
+                    def here = ${WORKSPACE}
                     echo "searching for hack files in ${here}"
                     showHackFiles = {
                         it.eachDir(showHackFiles)
