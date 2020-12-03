@@ -25,7 +25,8 @@ pipeline {
                 script {
                     @NonCPS
                     def result
-                    def here = ${WORKSPACE}
+                    def here = "."
+                    sh printenv
                     echo "searching for hack files in ${here}"
                     showHackFiles = {
                         it.eachDir(showHackFiles)
