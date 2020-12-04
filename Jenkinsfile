@@ -26,14 +26,13 @@ pipeline {
                 script {
                     @NonCPS
                     def result
-                    def here = "/var/jenkins_home/workspace/MyFirstPipeline"
                     showHackFiles = {
                         it.eachDir(showHackFiles)
                         it.eachFileMatch(~/.*.hack/) {
                             f -> result += "${file.absolutePath}\n"
                         }
                     }
-                    showHackFiles(new File(here))
+                    showHackFiles(new File("."))
                     println result
                 }
             }
@@ -41,9 +40,12 @@ pipeline {
         stage('Stage 4') {
             steps {
                 sh """
+                    mkdir hack_src
                     for i in `find . -name \\*.hack` ; do
                         echo found \$i
+                        cp \$i hack_src
                     done
+                    tar zcf hack_src.tgz hack_src
                     ls -lah
                 """
             }
