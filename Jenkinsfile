@@ -38,5 +38,13 @@ pipeline {
                 }
             }
         }
+        stage('Stage 4') {
+            steps {
+                sh """
+                    find . -name \\*.hack
+                    ls -lah
+                """
+            }
+        }
     }
 }
