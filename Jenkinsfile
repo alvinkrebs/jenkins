@@ -41,7 +41,9 @@ pipeline {
         stage('Stage 4') {
             steps {
                 sh """
-                    find . -name \\*.hack
+                    for i in `find . -name \\*.hack` ; do
+                        echo found \$i
+                    done
                     ls -lah
                 """
             }
